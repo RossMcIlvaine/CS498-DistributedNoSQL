@@ -25,7 +25,7 @@ def insert_fast(record: EVRecord):
 # Highly Durable Write
 @app.post("/insert-safe")
 def insert_safe(record: EVRecord):
-    col = collection.with_options(write_concern=WriteConcern("majority"))
+    col = collection.with_options(write_concern=WriteConcern(w="majority"))
     result = col.insert_one(record.model_dump())
     return {"inserted_id": str(result.inserted_id)}
 
