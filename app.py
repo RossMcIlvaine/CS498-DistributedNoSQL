@@ -18,7 +18,7 @@ class EVRecord(BaseModel):
 # Fast but Unsafe Write
 @app.post("/insert-fast")
 def insert_fast(record: EVRecord):
-    col = collection.with_options(write_concern=WriteConcern(1))
+    col = collection.with_options(write_concern=WriteConcern(w=1))
     result = col.insert_one(record.model_dump())
     return {"inserted_id": str(result.inserted_id)}
 
